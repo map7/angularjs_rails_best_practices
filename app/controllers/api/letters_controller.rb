@@ -1,4 +1,4 @@
-class Api::LettersController < ApplicationController
+class Api::LettersController < Api::BaseController
   def index
     respond_with :api, Letter.all
   end
