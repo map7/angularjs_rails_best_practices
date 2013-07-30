@@ -48,11 +48,13 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   # =========================================================================
 
   $scope.update = ->
+    debugger
+  
     $http.put("/api/letters/#{$scope.letter.id}",
       letter:
         subject: $scope.letter.subject
         body: $scope.letter.body
-
+      
     # success
     ).then ((response) ->
       $location.path "/letters"
