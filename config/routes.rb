@@ -2,7 +2,7 @@ AngularRailsExample::Application.routes.draw do
   root :to => 'home#index'
   
   namespace :api do
-    resources :tasks
+    resources :letters
   end
 
   get "home/index"
