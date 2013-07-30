@@ -1,0 +1,10 @@
+<ul>
+  <li ng-repeat="letter in letters">
+    Subject: {{letter.subject}} <br/>
+    Body: {{letter.body}}
+    <a href="/letters/{{letter.id}}/edit">Edit</a>
+    <a href="" ng-click="destroy(letter.id)">Delete</a>
+  </li>
+</ul>
+ 
+<a href="/letters/new">Add new letter</a>

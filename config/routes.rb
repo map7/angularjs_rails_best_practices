@@ -5,7 +5,10 @@ AngularRailsExample::Application.routes.draw do
     resources :letters
   end
 
-  get "home/index"
+  # Passthrough to frontend
+  match '/' => "home#index"
+  match '/letters' => 'home#index'
+  match '/letters/*page' => 'home#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,70 +1,79 @@
 app.controller "LettersController", ($scope, $http, $location, $state, $stateParams) ->
 
-  #
-  # Initialise
-  #
+  # =========================================================================
+  # Initialize
+  # =========================================================================
+
   $scope.letters = {}
   if $state.current.name == 'letters'
-    $http.get("/api/letters").
-      then((response) ->
-        # success
-        $scope.letters = response.data
+    $http.get("/api/letters"
 
-      ), (error) ->
-        # failure
+    # success
+    ).then ((response) ->
+      $scope.letters = response.data
 
+    # failure
+    ), (error) ->
+      
   $scope.letter = {}
   if $state.current.name == 'edit'
-    $http.get("/api/letters/#{$stateParams['id']}").
-      then ((response) ->
-        # success
-        $scope.letter = response.data
+    $http.get("/api/letters/#{$stateParams['id']}"
 
-      ), (error) ->
-        # failure
+    # success
+    ).then ((response) ->
+      $scope.letter = response.data
 
-  #
+    # failure
+    ), (error) ->
+
+  # =========================================================================
   # Create
-  #
+  # =========================================================================
+
   $scope.create = ->
     $http.post("/api/letters",
       letter:
-        subject: "Update Listing"
-        body: "Login to update your listing"
+        subject: $scope.letter.subject
+        body: $scope.letter.body
+
+    # success
     ).then ((response) ->
-      # success
       $location.path "/letters"
 
+    # failure
     ), (error) ->
-      # failure
 
-  #
+  # =========================================================================
   # Update
-  #
+  # =========================================================================
+
   $scope.update = ->
     $http.put("/api/letters/#{$scope.letter.id}",
       letter:
         subject: $scope.letter.subject
         body: $scope.letter.body
+
+    # success
     ).then ((response) ->
-      # success
       $location.path "/letters"
 
+    # failure
     ), (error) ->
-      # failure
 
-  #
+  # =========================================================================
   # Destroy
-  #
+  # =========================================================================
+
   $scope.destroy = (id) ->
-    $http.delete("/api/letters/#{id}").
-      then ((response) ->
-        # success
-        $http.get("/api/letters").then ((response) ->
-          $scope.letters = response.data
-        ), (error) ->
-          # failure
+    $http.delete("/api/letters/#{id}"
+
+    # success
+    ).then ((response) ->
+      $http.get("/api/letters").then ((response) ->
+        $scope.letters = response.data
+      ), (error) ->
+
+    # failure
     ), (error) ->
-      # failure
-  
+
   return false
