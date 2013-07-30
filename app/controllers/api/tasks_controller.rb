@@ -2,7 +2,7 @@ class Api::TasksController < Api::BaseController
   def index
     respond_with :api, Task.all
   end
-  
+ 
   def show
     respond_with :api, Task.find(params[:id])
   end
@@ -17,5 +17,5 @@ class Api::TasksController < Api::BaseController
  
   def destroy
     respond_with :api, Task.destroy(params[:id])
-  end 
+  end
 end
