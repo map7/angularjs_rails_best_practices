@@ -11,6 +11,10 @@ class Api::LettersController < Api::BaseController
     respond_with :api, Letter.create(params[:letter])
   end
   
+  def edit
+    respond_with :api, Letter.find(params[:id])
+  end
+  
   def update
     respond_with :api, Letter.update(params[:id], params[:letter])
   end
