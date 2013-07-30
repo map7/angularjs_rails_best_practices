@@ -1,2 +1,2 @@
 # Create 'app' angular application (module)
-@app = angular.module("app", ["ui.compat"])
+@app = angular.module("app", ["ngResource", "ui.compat"])
