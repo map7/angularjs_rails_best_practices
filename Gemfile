@@ -44,3 +44,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'angularjs-rails'
+
+group :development do
+  gem 'coffee-rails-source-maps'
+end
