@@ -1,21 +1,21 @@
 class Api::LettersController < ApplicationController
   def index
-    respond_with :api, Task.all
+    respond_with :api, Letter.all
   end
   
   def show
-    respond_with :api, Task.find(params[:id])
+    respond_with :api, Letter.find(params[:id])
   end
   
   def create
-    respond_with :api, Task.create(params[:task])
+    respond_with :api, Letter.create(params[:letter])
   end
   
   def update
-    respond_with :api, Task.update(params[:id], params[:task])
+    respond_with :api, Letter.update(params[:id], params[:letter])
   end
   
   def destroy
-    respond_with :api, Task.destroy(params[:id])
+    respond_with :api, Letter.destroy(params[:id])
   end
 end
