@@ -1,79 +1,105 @@
-app.controller "LettersController", ($scope, $http, $location, $state, $stateParams) ->
+app.controller "LettersController", ($scope, $http, $location, $state, $stateParams, Letter) ->
   
   # =========================================================================
   # Initialize
   # =========================================================================
-  
 
   $scope.letters = {}
-  if $state.current.name == 'letters'
-    $http.get("/api/letters"
-
-    # success
-    ).then ((response) ->
-      $scope.letters = response.data
-
-    # failure
-    ), (error) ->
-  
   $scope.letter = {}
-  if $state.current.name == 'edit'
-    $http.get("/api/letters/#{$stateParams['id']}"
 
+  # =========================================================================
+  # Show
+  # =========================================================================
+
+  if $state.current.name == 'letters'
+    Letter.query(
+      {}
+      
     # success
-    ).then ((response) ->
-      $scope.letter = response.data
+    , (response) ->
+      $scope.letters = response
 
     # failure
-    ), (error) ->
+    , (response) ->
+    )
+
+
+  if $state.current.name == 'show'
+    Letter.get
+      id: $stateParams['id']
+
+      # Success
+    , (response) ->
+      $scope.letter = response
+
+      # Error
+    , (response) ->
+
 
   # =========================================================================
   # Create
   # =========================================================================
 
   $scope.create = ->
-    $http.post("/api/letters",
+    Letter.save(
+      {}
+    ,
       letter:
         subject: $scope.letter.subject
         body: $scope.letter.body
 
     # success
-    ).then ((response) ->
+    , (response) ->
       $location.path "/letters"
     # failure
-    ), (error) ->
-
+    , (response) ->
+    )
+  
   # =========================================================================
   # Update
   # =========================================================================
 
+  if $state.current.name == 'edit'
+    Letter.get
+      id: $stateParams['id']
+      # success
+      , (response) ->
+        $scope.letter = response
+      # failure
+      , (response) ->
+  
   $scope.update = ->
-    $http.put("/api/letters/#{$scope.letter.id}",
+    Letter.update
+      id: $stateParams['id']
+    ,
       letter:
         subject: $scope.letter.subject
         body: $scope.letter.body
       
     # success
-    ).then ((response) ->
+    , (response) ->
       $location.path "/letters"
 
     # failure
-    ), (error) ->
+    , (response) ->
 
   # =========================================================================
   # Destroy
   # =========================================================================
 
   $scope.destroy = (id) ->
-    $http.delete("/api/letters/#{id}"
+    Letter.delete
+      id: id
 
     # success
-    ).then ((response) ->
-      $http.get("/api/letters").then ((response) ->
-        $scope.letters = response.data
-      ), (error) ->
+    , (response) ->
+      i=0
+      while i < $scope.letters.length
+        if $scope.letters[i]['id'] is id
+          $scope.letters.splice(i,1)
+        i++
 
     # failure
-    ), (error) ->
+    , (response) ->
 
   return false
