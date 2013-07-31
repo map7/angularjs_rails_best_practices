@@ -48,3 +48,14 @@ gem 'angularjs-rails'
 group :development do
   gem 'coffee-rails-source-maps'
 end
+
+group :development, :test do
+
+  # Testing Rails 
+  gem 'rspec-rails'
+  
+  # Testing JS
+  gem 'jasminerice' 
+  gem 'poltergeist' # Headless JS testing (Requires phantomjs to be installed)
+end
+
