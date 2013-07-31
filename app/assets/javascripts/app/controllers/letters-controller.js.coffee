@@ -1,8 +1,9 @@
 app.controller "LettersController", ($scope, $http, $location, $state, $stateParams) ->
-
+  
   # =========================================================================
   # Initialize
   # =========================================================================
+  
 
   $scope.letters = {}
   if $state.current.name == 'letters'
@@ -14,7 +15,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
     # failure
     ), (error) ->
-      
+  
   $scope.letter = {}
   if $state.current.name == 'edit'
     $http.get("/api/letters/#{$stateParams['id']}"
@@ -39,7 +40,6 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
     # success
     ).then ((response) ->
       $location.path "/letters"
-
     # failure
     ), (error) ->
 
@@ -48,8 +48,6 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   # =========================================================================
 
   $scope.update = ->
-    debugger
-  
     $http.put("/api/letters/#{$scope.letter.id}",
       letter:
         subject: $scope.letter.subject
