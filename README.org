@@ -1,0 +1,15 @@
+* AngularJS rails example2
+
+This example is based on the following tutorial;
+http://mightygio.com/2013/03/integrating-rails-and-angularjs-part-1-structure/
+
+It includes
+- Rails 3.2.x
+- AngularJS 1.0.7
+- coffeescript
+- Jasmine 
+- angular-resources
+- HTML5 pushState
+- Some best practices
+
+I build upon Mightygio's tutorial with some controller tests.
