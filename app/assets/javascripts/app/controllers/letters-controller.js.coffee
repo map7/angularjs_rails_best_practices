@@ -6,7 +6,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
   $scope.letters = {}
   $scope.letter = {}
-
+  $scope.foo = 'bar'
   # =========================================================================
   # Show
   # =========================================================================
