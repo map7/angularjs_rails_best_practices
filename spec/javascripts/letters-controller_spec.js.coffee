@@ -3,7 +3,7 @@ describe "LettersController", ->
     module("app")
 
   beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
-    location = $location
+    @location = $location
     @httpBackend = $httpBackend
     @scope = $rootScope.$new()
 
@@ -16,7 +16,7 @@ describe "LettersController", ->
 
     $controller("LettersController", {
       $scope: @scope,
-      $location: location,
+      $location: @location,
       $state: {current: {name: 'show'}},
       $stateParams: {id: 1}
     })
@@ -25,4 +25,5 @@ describe "LettersController", ->
   it "calls /api/letters", ->
     @httpBackend.flush()
     expect(@scope.letter.subject).toEqual('update')
+    expect(@scope.letter.body).toEqual('the body')
 
