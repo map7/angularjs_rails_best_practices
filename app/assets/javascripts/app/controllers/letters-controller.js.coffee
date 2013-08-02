@@ -15,7 +15,6 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   if $state.current.name == 'letters'
     Letter.query(
       {}
-      
     # success
     , (response) ->
       $scope.letters = response
@@ -28,15 +27,14 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   if $state.current.name == 'show'
     Letter.get
       id: $stateParams['id']
-
-      # Success
+      
+    # Success
     , (response) ->
       $scope.letter = response
 
-      # Error
+    # Error
     , (response) ->
-
-
+      $scope.letter = 'error'
   # =========================================================================
   # Create
   # =========================================================================
