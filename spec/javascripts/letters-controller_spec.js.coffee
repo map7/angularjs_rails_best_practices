@@ -6,11 +6,26 @@ describe "LettersController", ->
     @location = $location
     @httpBackend = $httpBackend
     @scope = $rootScope.$new()
+  ))
+
+  describe "index", ->
+    beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
 
       # mock the path /api/letters
-      # @httpBackend.whenGET('/api/letters').
-      #   respond([])
-  ))
+      @httpBackend.whenGET('/api/letters').respond(200, letters: {subject: "update"})
+
+      $controller("LettersController", {
+        $scope: @scope,
+        $location: @location,
+        $state: {current: {name: 'letters'}},
+        $stateParams: {id: 1}
+      })
+    ))
+
+    it "Returns letters array", ->
+      @httpBackend.flush()
+      expect(@scope.letters[0].subject).toEqual('update')
+    
 
   describe "show", ->
     beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
@@ -25,7 +40,6 @@ describe "LettersController", ->
     ))
 
     it "Returns letter object", ->
-      @location.path('/letters/1')
       @httpBackend.flush()      # Flush pending tasks before testing output.
       expect(@scope.letter.subject).toEqual('update')
       expect(@scope.letter.body).toEqual('the body')
@@ -54,4 +68,5 @@ describe "LettersController", ->
 
       # assertions
       expect(@redirect).toHaveBeenCalledWith('/letters')
+    
 
