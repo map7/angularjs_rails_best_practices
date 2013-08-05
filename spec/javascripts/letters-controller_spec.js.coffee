@@ -8,6 +8,10 @@ describe "LettersController", ->
     @scope = $rootScope.$new()
   ))
 
+  # =========================================================================
+  # Index tests
+  # =========================================================================
+
   describe "index", ->
     beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
 
@@ -26,6 +30,9 @@ describe "LettersController", ->
       @httpBackend.flush()
       expect(@scope.letters[0].subject).toEqual('update')
     
+  # =========================================================================
+  # Show tests
+  # =========================================================================
 
   describe "show", ->
     beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
@@ -43,6 +50,10 @@ describe "LettersController", ->
       @httpBackend.flush()      # Flush pending tasks before testing output.
       expect(@scope.letter.subject).toEqual('update')
       expect(@scope.letter.body).toEqual('the body')
+
+  # =========================================================================
+  # Create tests
+  # =========================================================================
 
   describe "create", ->
     beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
