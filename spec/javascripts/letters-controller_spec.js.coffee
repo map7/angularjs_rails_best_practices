@@ -35,21 +35,38 @@ describe "LettersController", ->
   # =========================================================================
 
   describe "show", ->
-    beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
-      @httpBackend.whenGET('/api/letters/1').respond(200, {subject: 'update', body: 'the body'})
+    describe "when good", ->
+      beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
+        @httpBackend.whenGET('/api/letters/1').respond(200, {subject: 'update', body: 'the body'})
 
-      $controller("LettersController", {
-        $scope: @scope,
-        $location: @location,
-        $state: {current: {name: 'show'}},
-        $stateParams: {id: 1}
-      })
-    ))
+        $controller("LettersController", {
+          $scope: @scope,
+          $location: @location,
+          $state: {current: {name: 'show'}},
+          $stateParams: {id: 1}
+        })
+      ))
 
-    it "Returns letter object", ->
-      @httpBackend.flush()      # Flush pending tasks before testing output.
-      expect(@scope.letter.subject).toEqual('update')
-      expect(@scope.letter.body).toEqual('the body')
+      it "Returns letter object", ->
+        @httpBackend.flush()      # Flush pending tasks before testing output.
+        expect(@scope.letter.subject).toEqual('update')
+        expect(@scope.letter.body).toEqual('the body')
+
+    describe "when error", ->
+      beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
+        @httpBackend.whenGET('/api/letters/1').respond(401, {error: 'no data'})
+
+        $controller("LettersController", {
+          $scope: @scope,
+          $location: @location,
+          $state: {current: {name: 'show'}},
+          $stateParams: {id: 1}
+        })
+      ))
+
+      it "Returns letter object", ->
+        @httpBackend.flush()      # Flush pending tasks before testing output.
+        expect(@scope.letter.error).toEqual('no data')
 
   # =========================================================================
   # Create tests

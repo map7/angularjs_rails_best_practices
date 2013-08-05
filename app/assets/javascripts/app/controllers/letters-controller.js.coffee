@@ -37,7 +37,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
     # Error
     , (response) ->
-      $scope.letter = 'error'
+      $scope.letter = response.data
   
   # =========================================================================
   # Create
