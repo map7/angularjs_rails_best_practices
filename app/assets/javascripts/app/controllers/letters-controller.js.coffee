@@ -9,7 +9,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   $scope.foo = $state.current.name
 
   # =========================================================================
-  # Show
+  # Index
   # =========================================================================
 
   if $state.current.name == 'letters'
@@ -23,6 +23,9 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
     , (response) ->
     )
 
+  # =========================================================================
+  # Show
+  # =========================================================================
 
   if $state.current.name == 'show'
     Letter.get
@@ -35,6 +38,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
     # Error
     , (response) ->
       $scope.letter = 'error'
+  
   # =========================================================================
   # Create
   # =========================================================================
@@ -55,7 +59,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
     )
   
   # =========================================================================
-  # Update
+  # Edit
   # =========================================================================
 
   if $state.current.name == 'edit'
@@ -66,6 +70,10 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
         $scope.letter = response
       # failure
       , (response) ->
+
+  # =========================================================================
+  # Update
+  # =========================================================================
   
   $scope.update = ->
     Letter.update
