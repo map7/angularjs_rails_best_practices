@@ -25,14 +25,6 @@ app.config ($stateProvider, $urlRouterProvider) ->
           controller: "LettersController"
           templateUrl: "/assets/letters/index.html.erb"
 
-    .state "show",
-      parent: "letters"
-      url: "/:id"
-      views:
-        "@default":
-          controller: "LettersController"
-          templateUrl: "/assets/letters/show.html.erb"
-
     .state "new",
       parent: "letters"
       url: "/new"
@@ -48,3 +40,11 @@ app.config ($stateProvider, $urlRouterProvider) ->
         "@default":
           controller: "LettersController"
           templateUrl: "/assets/letters/edit.html.erb"
+
+    .state "show",
+      parent: "letters"
+      url: "/:id"
+      views:
+        "@default":
+          controller: "LettersController"
+          templateUrl: "/assets/letters/show.html.erb"
