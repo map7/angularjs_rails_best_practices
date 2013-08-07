@@ -75,7 +75,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   # Update
   # =========================================================================
     $scope.update = ->
-      letter = $scope.remove_keys($scope.letter)
+      letter = $scope.remove_keys($scope.letter) # ApplicationController function
     
       Letter.update
         id: $stateParams['id']
