@@ -74,24 +74,19 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   # =========================================================================
   # Update
   # =========================================================================
-  $scope.update = ->
-    letter = {}
-    #  Strip out id, created_at & updated_at
-    angular.forEach($scope.letter, (value,key) ->
-      if(key!='id' && key!='created_at' && key!='updated_at')
-        letter[key]=value
-    ,letter)
-  
-    Letter.update
-      id: $stateParams['id']
-    ,
-      letter: letter
-    # success
-    , (response) ->
-      $location.path "/letters"
+    $scope.update = ->
+      letter = $scope.remove_keys($scope.letter)
+    
+      Letter.update
+        id: $stateParams['id']
+      ,
+        letter: letter
+      # success
+      , (response) ->
+        $location.path "/letters"
 
-    # failure
-    , (response) ->
+      # failure
+      , (response) ->
 
   # =========================================================================
   # Destroy
