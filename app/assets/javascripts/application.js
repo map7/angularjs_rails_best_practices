@@ -13,7 +13,7 @@
 // AngularJS
 //= require angular
 //= require angular-resource
-//= require angular-ui-states
+//= require angular-ui-router
 //
 // app-specific js files
 //= require app/main
