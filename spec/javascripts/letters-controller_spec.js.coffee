@@ -97,4 +97,32 @@ describe "LettersController", ->
       # assertions
       expect(@redirect).toHaveBeenCalledWith('/letters')
     
+                               
+    # ================================================================================
+    # Delete tests
+    # ================================================================================
 
+    describe "destroy", ->
+      beforeEach(inject ( ($controller, $rootScope, $location, $state, $httpBackend) ->
+        # mock path /letters
+        #@httpBackend.whenGET('/api/letters/1').respond(200, {tran_no: 1, voucher_no: 2})
+        
+        ctrl = $controller('LettersController', {
+          $scope: @scope,
+          $location: @location
+        })
+      ))
+      
+      it "gets a new listing from the server", ->
+     
+        @scope.letters = [{id: 1, tran_no: 1}, {id: 2, tran_no: 2}]
+        
+        @httpBackend.expectDELETE('/api/letters/1').respond(200)
+        @scope.destroy(1)
+
+        @httpBackend.flush()    # Flush pending tasks before testing output
+        #expect(@scope.letters[0].tran_no).toEqual(1)
+        expect(@scope.letters).toEqual([{id: 2, tran_no: 2}])
+        
+#      it "removes letter from the list", ->
+        
