@@ -79,17 +79,14 @@ describe "LettersController", ->
       @httpBackend.whenGET('/assets/letters/index.html.erb').respond(200)
       @httpBackend.whenPOST('/api/letters').respond(200)
   
-      $controller("LettersController", {
-        $scope: @scope,
-        $location: @location,
-        $stateParams: {id: 1}
-      })
+      $controller("LettersController", { $scope: @scope, $location: @location })
     ))
 
-    it "redirects to /letters", ->
-      # arrange
+    it "sends a post to the backend", ->
       @httpBackend.expectPOST('/api/letters', {"letter":{},"_utf8":"☃"}).respond(200)
+      @scope.create()
 
+    it "redirects to /letters", ->
       # act
       @scope.create()
       @httpBackend.flush()
