@@ -43,6 +43,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+gem 'ransack'
+
 gem 'angularjs-rails'
 
 group :development do
