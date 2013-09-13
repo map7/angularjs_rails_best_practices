@@ -40,15 +40,13 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
-
 gem 'ransack'
 
 gem 'angularjs-rails'
 
 group :development do
   gem 'coffee-rails-source-maps'
+  gem 'debugger'
 end
 
 group :development, :test do
