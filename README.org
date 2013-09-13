@@ -11,5 +11,8 @@ It includes
 - angular-resources
 - HTML5 pushState
 - Some best practices
+- Some tests
+- Backend search 
+- Using a service to retain search values
 
 I build upon Mightygio's tutorial with some controller tests.
