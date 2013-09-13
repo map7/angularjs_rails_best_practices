@@ -22,7 +22,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
   if $state.current.name == 'letters'
     $scope.subject_cont = searchService.getSubject()
-    $http.get('/api/letters?q[subject_cont]=' + $scope.subject_cont).then((response)-> $scope.letters=response.data)
+    $scope.search()
 
   # =========================================================================
   # Show
