@@ -1,5 +1,5 @@
-<form>
-  <table>
+<table>
+  <form>
 	<tr>
 	  <td><input ng-model="subject_cont" /></td>
 	  <td><input ng-model="body_cont" /></td>
@@ -8,20 +8,20 @@
 		<input type="submit" name="submit" value="submit" ng-click="search()" />
 	  </td>
 	</tr>
+  </form>
 
-	<th>Subject</th>
-	<th>Body</th>
+  <th>Subject</th>
+  <th>Body</th>
 
-	<tr ng-repeat="letter in letters">
-      <td>{{letter.subject}} </td>
-      <td>{{letter.body}}</td>
-	  <td>
-		<a href="/letters/{{letter.id}}">Show</a>
-		<a href="/letters/{{letter.id}}/edit">Edit</a>
-		<a href="" ng-click="destroy(letter.id)">Delete</a>
-	  </td>
-	</tr>
-  </table>
-</form>
- 
+  <tr ng-repeat="letter in letters">
+    <td>{{letter.subject}} </td>
+    <td>{{letter.body}}</td>
+	<td>
+	  <a href="/letters/{{letter.id}}">Show</a>
+	  <a href="/letters/{{letter.id}}/edit">Edit</a>
+	  <a href="" ng-click="destroy(letter.id)">Delete</a>
+	</td>
+  </tr>
+</table>
+
 <a href="/letters/new">Add new letter</a>
