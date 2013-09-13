@@ -14,10 +14,12 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
   $scope.search = ->
     searchService.setSubject($scope.subject_cont)
-    $http.get('/api/letters?q[subject_cont]=' + $scope.subject_cont).then ((response) -> $scope.letters=response.data)
+    searchService.setBody($scope.body_cont)
+    $http.get('/api/letters?q[subject_cont]=' + $scope.subject_cont + '&q[body_cont]=' + $scope.body_cont).then ((response) -> $scope.letters=response.data)
 
   $scope.reset = ->
     $scope.subject_cont = ""
+    $scope.body_cont = ""
     $scope.search()
 
   # =========================================================================
@@ -26,6 +28,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
   if $state.current.name == 'letters'
     $scope.subject_cont = searchService.getSubject()
+    $scope.body_cont = searchService.getBody()
     $scope.search()
 
   # =========================================================================

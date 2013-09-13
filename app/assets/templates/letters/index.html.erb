@@ -1,20 +1,27 @@
 <form>
-  Subject: 
-  <input ng-model="subject_cont" />
-  <input type="reset" value="reset" ng-click="reset()" />
-  <input type="submit" name="submit" value="submit" ng-click="search()" />
-</form>
+  <table>
+	<tr>
+	  <td><input ng-model="subject_cont" /></td>
+	  <td><input ng-model="body_cont" /></td>
+	  <td>
+		<input type="reset" value="reset" ng-click="reset()" />
+		<input type="submit" name="submit" value="submit" ng-click="search()" />
+	  </td>
+	</tr>
 
-<table>
-  <tr ng-repeat="letter in letters">
-    <td>Subject: {{letter.subject}} </td>
-    <td>Body: {{letter.body}}</td>
-	<td>
-	  <a href="/letters/{{letter.id}}">Show</a>
-      <a href="/letters/{{letter.id}}/edit">Edit</a>
-      <a href="" ng-click="destroy(letter.id)">Delete</a>
-	</td>
-  </tr>
-</table>
+	<th>Subject</th>
+	<th>Body</th>
+
+	<tr ng-repeat="letter in letters">
+      <td>{{letter.subject}} </td>
+      <td>{{letter.body}}</td>
+	  <td>
+		<a href="/letters/{{letter.id}}">Show</a>
+		<a href="/letters/{{letter.id}}/edit">Edit</a>
+		<a href="" ng-click="destroy(letter.id)">Delete</a>
+	  </td>
+	</tr>
+  </table>
+</form>
  
 <a href="/letters/new">Add new letter</a>
