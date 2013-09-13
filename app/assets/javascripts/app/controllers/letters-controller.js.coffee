@@ -15,7 +15,14 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   $scope.search = ->
     searchService.setSubject($scope.subject_cont)
     searchService.setBody($scope.body_cont)
-    $http.get('/api/letters?q[subject_cont]=' + $scope.subject_cont + '&q[body_cont]=' + $scope.body_cont).then ((response) -> $scope.letters=response.data)
+
+    # Submit the search
+    $http.get('/api/letters?' +
+      'q[subject_cont]=' + $scope.subject_cont +
+      '&q[body_cont]=' + $scope.body_cont)
+    .then ((response) ->
+      $scope.letters=response.data
+    )
 
   $scope.reset = ->
     $scope.subject_cont = ""
