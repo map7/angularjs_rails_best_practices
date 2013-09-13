@@ -12,7 +12,6 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   # Search using the backend (ransack)
   # =========================================================================
 
- # Send a request to the backend to search
   $scope.search = ->
     searchService.setSubject($scope.subject_cont)
     $http.get('/api/letters?q[subject_cont]=' + $scope.subject_cont).then ((response) -> $scope.letters=response.data)
