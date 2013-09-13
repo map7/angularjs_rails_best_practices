@@ -17,6 +17,7 @@
 //
 // app-specific js files
 //= require app/main
+//= require_tree ./app/services
 //= require_tree ./app/controllers
 //= require_tree ./app/resources
 //= require_tree ./config

@@ -1,4 +1,4 @@
-app.controller "LettersController", ($scope, $http, $location, $state, $stateParams, Letter) ->
+app.controller "LettersController", ($scope, $http, $location, $state, $stateParams, searchService, Letter) ->
   
   # =========================================================================
   # Initialize
@@ -14,6 +14,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
  # Send a request to the backend to search
   $scope.search = ->
+    searchService.setSubject($scope.subject_cont)
     $http.get('/api/letters?q[subject_cont]=' + $scope.subject_cont).then ((response) -> $scope.letters=response.data)
 
   # =========================================================================
@@ -21,15 +22,8 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   # =========================================================================
 
   if $state.current.name == 'letters'
-    Letter.query(
-      {}
-    # success
-    , (response) ->
-      $scope.letters = response
-
-    # failure
-    , (response) ->
-    )
+    $scope.subject_cont = searchService.getSubject()
+    $http.get('/api/letters?q[subject_cont]=' + $scope.subject_cont).then((response)-> $scope.letters=response.data)
 
   # =========================================================================
   # Show
