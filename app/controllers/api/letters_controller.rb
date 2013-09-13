@@ -1,6 +1,8 @@
 class Api::LettersController < Api::BaseController
   def index
-    respond_with :api, Letter.all
+    @q=Letter.search(params[:q])
+    @letters=@q.result()
+    respond_with :api, @letters
   end
   
   def show
