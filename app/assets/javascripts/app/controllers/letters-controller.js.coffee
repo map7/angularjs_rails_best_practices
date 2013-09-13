@@ -8,7 +8,6 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
   $scope.letter = {}
   $scope.foo = $state.current.name
 
-
   # =========================================================================
   # Search using the backend (ransack)
   # =========================================================================

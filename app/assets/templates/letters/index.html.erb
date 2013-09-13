@@ -4,14 +4,16 @@
   <button ng-click="search()" />
 </form>
 
-<ul>
-  <li ng-repeat="letter in letters">
-    Subject: {{letter.subject}} <br/>
-    Body: {{letter.body}}
-	<a href="/letters/{{letter.id}}">Show</a>
-    <a href="/letters/{{letter.id}}/edit">Edit</a>
-    <a href="" ng-click="destroy(letter.id)">Delete</a>
-  </li>
-</ul>
+<table>
+  <tr ng-repeat="letter in letters">
+    <td>Subject: {{letter.subject}} </td>
+    <td>Body: {{letter.body}}</td>
+	<td>
+	  <a href="/letters/{{letter.id}}">Show</a>
+      <a href="/letters/{{letter.id}}/edit">Edit</a>
+      <a href="" ng-click="destroy(letter.id)">Delete</a>
+	</td>
+  </tr>
+</table>
  
 <a href="/letters/new">Add new letter</a>
