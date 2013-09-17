@@ -12,6 +12,7 @@
 //
 // AngularJS
 //= require angular
+//= require angular-flash
 //= require angular-resource
 //= require angular-ui-router
 //

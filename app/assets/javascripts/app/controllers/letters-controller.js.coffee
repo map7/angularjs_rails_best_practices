@@ -1,4 +1,4 @@
-app.controller "LettersController", ($scope, $http, $location, $state, $stateParams, searchService, Letter) ->
+app.controller "LettersController", ($scope, $http, $location, $state, $stateParams, searchService, flash, Letter) ->
   
   # =========================================================================
   # Initialize
@@ -67,6 +67,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
     # success
     , (response) ->
+      flash('notice', 'Letter created!', 2000)
       $location.path "/letters"
     # failure
     , (response) ->
@@ -97,10 +98,12 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
         letter: letter
       # success
       , (response) ->
+        flash('notice', 'Letter updated!', 2000)
         $location.path "/letters"
 
       # failure
       , (response) ->
+        flash('alert', 'Letter not updated!', 2000)
 
   # =========================================================================
   # Destroy
@@ -112,6 +115,7 @@ app.controller "LettersController", ($scope, $http, $location, $state, $statePar
 
     # success
     , (response) ->
+      flash('notice', 'Letter deleted!', 2000)
       i=0
       while i < $scope.letters.length
         if $scope.letters[i]['id'] is id
