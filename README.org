@@ -16,3 +16,7 @@ It includes
 - Using a service to retain search values
 
 I build upon Mightygio's tutorial with some controller tests.
+** TODO Improvements
+
+- [ ] Slim down controller and split into individual files
+- [ ] Cache search results in a way which will include new/edited results
