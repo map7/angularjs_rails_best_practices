@@ -20,3 +20,4 @@ I build upon Mightygio's tutorial with some controller tests.
 
 - [ ] Slim down controller and split into individual files
 - [ ] Cache search results in a way which will include new/edited results
+- [ ] Put search criteria into URL so people can reload search results, or book mark them?
